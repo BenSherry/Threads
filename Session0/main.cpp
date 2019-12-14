@@ -2,6 +2,7 @@
 #include <thread>
 #include <functional>
 #include <atomic>
+#include <chrono>
 
 void by_function()
 {
@@ -64,8 +65,9 @@ int main()
     std::thread threadObj4{callback};
     threadObj4.detach();
 
-    for (auto i = 10; i > 0; i--)
-    {
-        std::cout <<"print from main \n";
-    }
+    auto start = std::chrono::high_resolution_clock::now();
+    std::this_thread::sleep_for(std::chrono::milliseconds(3000));
+    auto end = std::chrono::high_resolution_clock::now();
+
+    std::cout << "MainThread sleep almost " << (end -start).count() << "\n";
 }
