@@ -8,16 +8,27 @@ std::mutex g_mutex;
 
 void SaleTicketV1()
 {
-    while(g_ticket > 0)
+    while(true)
     {
         /*
         lock_guard is similar with unique, all are not copyable
         the difference unique_lock is removeable, lock_guard can not
         */
         //std::lock_guard<std::mutex> lock(g_mutex);
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
         std::unique_lock<std::mutex> lock(g_mutex);
-        std::cout << "Thread id:"<< std::this_thread::get_id() << " ticket:" << g_ticket << "\n";
-        g_ticket--;
+        if (g_ticket > 0)
+        {
+            std::cout << "Thread id:"<< std::this_thread::get_id() << " ticket:" << g_ticket << "\n";
+            g_ticket--;
+        }
+        else
+        {
+            std::cout << "All ticket is saled\n";
+            break;
+        }
+        
+       
     }
 }
 
