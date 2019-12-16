@@ -2,8 +2,9 @@
 #include <thread>
 #include <string>
 
-int g_ExecuteSign = 0;
+#include "Condition.hpp"
 
+int g_ExecuteSign = 0;
 void FuncPrintA()
 {
     auto count = 10;
@@ -57,5 +58,6 @@ int main()
     threadA.join();
     threadB.join();
     threadC.join();
+    PrintABC();
     std::cout <<"please add your code and have fun...\n";
 }

@@ -3,6 +3,7 @@
 #include <functional>
 #include <atomic>
 #include <chrono>
+#include <condition_variable>
 
 void by_function()
 {
@@ -69,5 +70,5 @@ int main()
     std::this_thread::sleep_for(std::chrono::milliseconds(3000));
     auto end = std::chrono::high_resolution_clock::now();
 
-    std::cout << "MainThread sleep almost " << (end -start).count() << "\n";
+    std::cout << "MainThread sleep almost " << (end - start).count() << "\n";
 }
