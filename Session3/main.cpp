@@ -41,8 +41,8 @@ int main()
     std::thread threadA(AccountTransfer, std::ref(Bob), std::ref(Linda), 60);
     std::thread threadB(AccountTransfer, std::ref(Bob), std::ref(Tom), 60);
 
-    threadA.detach();
-    threadB.detach();
+    threadA.join();
+    threadB.join();
 
     std::cout << "Bob has:" << Bob.getValue() << "\n";
     std::cout << "Linda has:" << Linda.getValue() << "\n";
